@@ -1,0 +1,14 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    vector <unsigned long long> v;
+    for (int i=1;i<101;++i){
+        v.push_back(i*i);
+    }
+    unsigned long long int sum_squares = 0;
+    sum_squares = accumulate(v.begin(),v.end(),sum_squares,[](int a,int b){return a+b;});
+    int sum = ((100*101)/2);//n*(n-1)/2;
+    unsigned long long square_sum = sum*sum;
+    cout<<square_sum-sum_squares<<endl;
+}

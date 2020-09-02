@@ -1,0 +1,24 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+unsigned long long int SieveOfEratosthenes(unsigned long long int n){
+    vector <bool> sieve;
+    sieve.resize(n);
+    fill(sieve.begin(),sieve.end(),true);
+    for (unsigned long long int i = 2;i<sqrt(n);++i){
+        for (unsigned long long int j = i*i;j<=n;j+=i){
+            sieve[j] = false;
+        }
+    }
+    unsigned long long int total = 2;
+    for (int it = 3;it <=n;++it){
+        if (sieve[it]){
+            total += it;
+        }
+    }
+    return total;
+    
+}
+int main(){
+    cout<<SieveOfEratosthenes(2000000);
+}

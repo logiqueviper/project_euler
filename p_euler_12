@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cmath>
+#include <bits/stdc++.h>
+using namespace std;
+int divisor_count(unsigned long int n){
+    int count = 0;
+    for (unsigned int i=1;i<ceil(sqrt(n));++i){
+        if (n%i==0){
+            if (i*i == n){
+                ++count;
+            }else{
+                count += 2;
+            }
+        }
+    }
+    return count;
+    
+}
+int main(){
+    unsigned long int triangle_num = 55;
+    for (unsigned int k = 11;divisor_count(triangle_num)<500;++k){
+        triangle_num += k;
+    }
+    cout<<triangle_num<<endl;
+
+}

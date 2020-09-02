@@ -1,0 +1,38 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+typedef vector <unsigned int> vui;
+#define max_digits 1001
+vui accumulate_sum(const vui&prev,const vui&next){
+    vui res = next;
+    unsigned int carry = 0;
+    for (unsigned int inx = 0;inx < res.size();++inx){
+        if (inx < prev.size()){
+            res[inx] += prev[inx];
+        }
+        res[inx] += carry;
+        if (res[inx] >= 10){
+            carry = 1;
+            res[inx] -= 10;
+        }else{
+            carry = 0;
+        }
+    }
+    if (carry != 0){
+        res.push_back(carry);
+    }
+    return res;
+}
+int main(){
+    vui prev = {3};
+    vui next = {5};
+    unsigned int index = 0;
+    while (next.size() <= 1000){
+        ++index;
+        vui next_res = accumulate_sum(prev , next);
+        prev = next;
+        next = next_res;
+        int num_digits = next.size();
+    }
+    cout << index << endl;
+}

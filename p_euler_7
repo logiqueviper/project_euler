@@ -1,0 +1,22 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    vector <int> primes;
+    primes.reserve(10001);
+    primes.push_back(2);
+    primes.push_back(3);
+    for (int i = 5;primes.size()<10001;i+=2){
+        bool is_prime = true;
+        for (auto p:primes){
+            if (i%p == 0){
+                is_prime = false;
+            }
+        }
+        if (is_prime){
+            primes.push_back(i);
+        }
+    }
+    cout<<primes.back();
+
+}

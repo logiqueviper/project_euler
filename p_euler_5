@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+unsigned long long gcd(unsigned long long a,unsigned long long b){
+    if (b==0){
+        return a;
+    }
+    return gcd(b,a%b);
+}
+unsigned long long lcm(unsigned long long a,unsigned long long b){
+    return a*b/(gcd(a,b));
+}
+int main(){
+    unsigned long long result = 1;
+    for (int j=2;j<21;++j){
+        result = lcm(result,j);
+    }
+    cout<<result<<endl;
+}

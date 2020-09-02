@@ -1,0 +1,15 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int lli;
+int main(){
+    string s = "0123456789";
+    vector <char> v(s.begin(),s.end());
+    for (lli i=0;i<999999;++i){
+        next_permutation(v.begin(),v.end());
+    }
+    for (auto ans:v){
+        cout << ans;
+    }
+}
+

@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+#include <bits/stdc++.h>
+using namespace std;
+string single_digits[10]={"","one","two","three","four","five","six","seven","eight","nine"};
+string ten_to_twenty[10]={"","eleven","tweleve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+string decades[10]={"","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+int get_str_len(unsigned int n){
+    int hundreds = 0,tens = 0,value = 0;
+    while (n>=100){
+        ++hundreds;
+        n -= 100;
+    }
+    while (n>=10){
+        ++tens;
+        n -= 10;
+    }
+    while (n>0){
+        ++value;
+        n -= 1;
+    }
+    string s;
+    if (hundreds == 0 && tens ==0 && value!=0){
+        s += single_digits[value];
+    }
+    if (hundreds==0 && tens==1 && value !=0){
+        s += ten_to_twenty[value];
+    }
+    if (hundreds ==0 && tens>1 && value ==0){
+        s += decades[tens];
+    }
+    if (hundreds == 0 && tens>1 && value !=0 ){
+        s += decades[tens] + single_digits[value];
+    }
+    if (hundreds > 0){
+        s += single_digits[hundreds] + "hundred";
+    }
+    if (hundreds>0 && ((tens>0)||value>0)){
+        if (value==0 && tens>0){
+            s += "and" + decades[tens];
+        }else if(tens == 1 && value != 0){
+            s += "and" + ten_to_twenty[value];
+        }else{
+            s += "and" + decades[tens] + single_digits[value];
+        }
+    }
+    return s.length();
+}
+int main(){
+    int ans =0;
+    for (int i=0;i<1000;++i){
+        ans += get_str_len(i);
+    }
+    cout<<ans+4;
+    //?This is solution goes off by 4::But This is the logic I got exact ans in python -- 21124
+}

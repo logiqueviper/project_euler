@@ -1,0 +1,31 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include <cmath>
+using namespace std;
+int main(){
+    const int exponent = 1000;
+    const int base = 2;
+    int size = floor(1+ exponent*(log10(base)));
+    vector <int> digit_array(size);
+    digit_array.front() = 1;
+    for (int i=0;i<exponent;++i){
+        int carry = 0;
+        for (int j=0;j<size;++j){
+            int value = digit_array[j] + digit_array[j] +carry;
+            if (value > 9){
+                carry = 1;
+                value -= 10;
+            }else{
+                carry = 0;
+            }
+            digit_array[j] = value%10;
+        }
+    }
+    int ans = accumulate(digit_array.begin(),digit_array.end(),0);
+    cout<<ans<<endl;
+    cout<<"2^1000 = ";
+    for (auto it = digit_array.rbegin();it != digit_array.rend();++it){
+        cout<<*it;
+    }
+    return 0;
+}

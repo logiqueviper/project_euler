@@ -1,0 +1,25 @@
+// Your C++ Code
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main(){
+	const ll init = 1504170715041707;
+	const ll mod = 4503599627370517;
+	ll eulerian = init;
+	ll non_eulerian = init;
+	ll res = init;
+	while (eulerian > 0){
+		ll curr = (eulerian + non_eulerian)%mod;
+		if (curr < eulerian){
+			eulerian = curr;
+			res += eulerian;
+		}
+		else{
+			non_eulerian = curr;
+		}
+	}
+	cout << res << endl;
+}
+
+

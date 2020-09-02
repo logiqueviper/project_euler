@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cmath>
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    double digits = 0.00;
+    for (int i = 1;i<101;++i){
+        digits += log10(i);
+    }
+    const int num_digits = floor(digits)+1;
+    vector <int> factorial(num_digits);
+    factorial.front() = 1;
+    int carry = 0;
+    for (int factor=2;factor<101;++factor){
+        for (int index =0;index<num_digits;++index){
+            int current = factor*factorial[index] + carry;
+            factorial[index] = current%10;
+            carry = current/10;
+        }
+    }
+    cout<<accumulate(factorial.begin(),factorial.end(),0)<<endl;
+}

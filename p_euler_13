@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+    int array[100][50];
+    int resultarray[52];
+    int columntotal;
+    int carry = 0;
+    for (int x=0;x<100;++x){
+        for (int y=0;y<50;++y){
+            cin>>array[x][y];
+        }
+    }
+    for (int col = 49;col>=0;++col){
+        columntotal = 0;
+        columntotal += carry;
+        for (int row = 0;row<100;++row){
+            columntotal += array[row][col];
+        }
+        carry = columntotal/10;
+        resultarray[col] = columntotal%10;
+    }
+    for (int i =51;i>=2;--i){
+        resultarray[i] = resultarray[i-2];
+    }
+    resultarray[0] = carry%10;
+    carry /=10;
+    resultarray[1] = carry/10;
+    for (auto p:resultarray){
+        cout<<p;
+    }
+    return 0;
+}

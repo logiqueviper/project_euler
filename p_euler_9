@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cmath>
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    unsigned long long ans = 0;
+    for (int i = 0;i<1000;++i){
+        for (int j = i+1;i+j<=1000;++j){
+            unsigned long res = i*i + j*j;
+            unsigned int check = ceil(pow(res,0.5)); 
+            if (check*check != res){
+                continue;
+            }else{
+                if (check+i+j == 1000){
+                    ans = check*i*j;
+                }else{
+                    continue;
+                }
+            }
+        }   
+    }
+    cout<<ans<<endl;
+    return 0;
+}

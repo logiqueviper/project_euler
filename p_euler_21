@@ -1,0 +1,31 @@
+#include <stdio.h>
+unsigned long d(unsigned long n)
+{
+    unsigned long sum = 0, i;
+
+    for (i = 1; i < n; i++)
+    {
+        if (n % i == 0)
+            sum += i;
+    }
+
+    return sum;
+}
+
+#define LIMIT 10000
+
+int main(void)
+{
+    unsigned long sum = 0, b;
+    unsigned int a;
+
+    for (a = 1; a < LIMIT; a++)
+    {
+        b = d(a);
+        if (d(b) == a && a != b)
+            sum += a;
+    }
+    printf("%ld\n", sum);
+
+    return 0;
+}
